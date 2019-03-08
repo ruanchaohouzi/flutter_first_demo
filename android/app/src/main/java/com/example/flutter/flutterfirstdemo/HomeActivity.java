@@ -24,25 +24,22 @@ public class HomeActivity extends Activity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.btn_switch:
-                Intent intent = new Intent(this, MainActivity.class);
-                intent.setAction("android.intent.action.RUN");
-                intent.putExtra("route","main");
-                startActivity(intent);
-                break;
-            case R.id.add_flutter:
-//                View flutterView = Flutter.createView(
+        int i = v.getId();
+        if (i == R.id.btn_switch) {
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.setAction("android.intent.action.RUN");
+            intent.putExtra("route", "main");
+            startActivity(intent);
+
+        } else if (i == R.id.add_flutter) {//                View flutterView = Flutter.createView(
 //                        HomeActivity.this,
 //                        getLifecycle(),
 //                        "route1"
 //                );
 //                mContent.addView(flutterView);
-                break;
-            case R.id.btn_login:
-                break;
-                default:
-                    break;
+
+        } else if (i == R.id.btn_login) {
+        } else {
         }
     }
 }

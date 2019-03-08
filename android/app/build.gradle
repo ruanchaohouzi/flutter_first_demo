@@ -49,6 +49,9 @@ android {
             signingConfig signingConfigs.debug
         }
     }
+    lintOptions {
+        abortOnError false
+    }
 }
 
 flutter {
@@ -57,9 +60,6 @@ flutter {
 
 dependencies {
     implementation 'com.android.support:appcompat-v7:27.1.1'
-//    implementation(project(':flutter'),{
-//        exclude group: 'com.android.support'
-////    })
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     testImplementation 'junit:junit:4.12'
     implementation 'com.github.bumptech.glide:okhttp3-integration:1.4.0@aar'

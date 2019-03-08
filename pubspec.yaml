@@ -23,6 +23,7 @@ dependencies:
   http: '>=0.11.3+12'
   path_provider: ^0.4.1
   flutter_webview_plugin: ^0.3.0+2
+#  flutter_webview_plugin: ^0.2.1+2
   crypto: ^2.0.6
   dio: ^1.0.6
   fluttertoast: ^2.2.6
@@ -64,6 +65,8 @@ flutter:
    - images/a2.png
    - images/a3.png
    - images/a4.png
+   - images/head_img.jpg
+   - images/sun.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.

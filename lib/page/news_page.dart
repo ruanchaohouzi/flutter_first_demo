@@ -102,7 +102,7 @@ class NewsPageState extends State<NewsPage> with AutomaticKeepAliveClientMixin{
 
   Future<Null> getNewsData({RequestType requestType = RequestType.direct}) async {
 
-    String appKey = "28382efd8a069ac39646fbdbf2212aea" + "sss";
+    String appKey = "28382efd8a069ac39646fbdbf2212aea";
     //聚合数据接口
     String url = "http://v.juhe.cn/toutiao/index?type=top&key=$appKey";
     var response = await HttpUtil().get(url, null);
