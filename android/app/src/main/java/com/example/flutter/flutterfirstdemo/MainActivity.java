@@ -29,6 +29,9 @@ public class MainActivity extends FlutterActivity {
                     result.success(text);
                 }else if (methodCall.method.contentEquals("getPage")){
                     result.success("main");
+                }else if (methodCall.method.contentEquals("getCity")){
+                    Object arguments = methodCall.arguments;
+                    result.success("杭州");
                 }
             }
         });

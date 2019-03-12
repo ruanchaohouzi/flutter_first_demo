@@ -1,6 +1,8 @@
+import 'dart:io';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_first_demo/model/weather.dart';
 import 'package:flutter_first_demo/utils/http_util.dart';
 
@@ -17,6 +19,10 @@ class WeatherPageState extends State<WeatherPage> with AutomaticKeepAliveClientM
 
   final String WeatherAppKey = "41b4845e8183e58ef69f0852ffc07547";
   Weather weather;
+  var city = "";
+
+  MethodChannel channel= new MethodChannel("app.channel.shared.data");
+
   @override
   void initState() {
     // TODO: implement initState
@@ -32,6 +38,16 @@ class WeatherPageState extends State<WeatherPage> with AutomaticKeepAliveClientM
       body: ListView(
         children: <Widget>[
           getHeadWidget(),
+          Container(
+            color: Colors.red,
+            child: Padding(
+              padding: EdgeInsets.all(5.0),
+              child: Container(
+
+                child: Text("本周天气", style: TextStyle(fontSize: 20.0),),
+              ),
+            ),
+          ),
           getFutureWeatherWidget(),
           getTemperatureTrend(),
         ],
@@ -85,7 +101,12 @@ class WeatherPageState extends State<WeatherPage> with AutomaticKeepAliveClientM
 }
 
   Future getWeatherResult() async{
-    Map<String, dynamic> weatherResponse = await HttpUtil().get("http://apis.juhe.cn/simpleWeather/query?city=%E8%8B%8F%E5%B7%9E&key=$WeatherAppKey", null);
+    if(Platform.isAndroid) {
+      city = await channel.invokeMethod("getCity");
+    }else{
+      city = "杭州";
+    }
+    Map<String, dynamic> weatherResponse = await HttpUtil().get("http://apis.juhe.cn/simpleWeather/query?city=${Uri.encodeFull(city)}&key=$WeatherAppKey", null);
     setState(() {
       print("weatherResponse:${weatherResponse}");
       weather = Weather.fromJson(weatherResponse);
@@ -93,7 +114,6 @@ class WeatherPageState extends State<WeatherPage> with AutomaticKeepAliveClientM
   }
 
   Widget getTemperatureTrend() {
-    List temperature = [[7,10],[9,13],[8,12],[7,13],[6,13]];
     return Container(
       width: MediaQuery.of(context).size.width,
       height: 150,
@@ -138,10 +158,15 @@ class WeatherPageState extends State<WeatherPage> with AutomaticKeepAliveClientM
       child:Stack(
         children: <Widget>[
           Image.asset("images/head_img.jpg",fit: BoxFit.fitWidth,),
-          Padding(padding: EdgeInsets.only(left: 50,top: 100),
+          Padding(padding: EdgeInsets.only(left: 50,top: 30),
             child: Container(
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
+                  Text("$city",style: TextStyle(
+                      fontSize: 70.0,
+                      color: Colors.white
+                  )),
                   Row(
                     children: <Widget>[
                       Text("${weather?.result?.realtime?.temperature}°",

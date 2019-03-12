@@ -22,7 +22,7 @@ dependencies:
   cupertino_icons: ^0.1.2
   http: '>=0.11.3+12'
   path_provider: ^0.4.1
-  flutter_webview_plugin: ^0.3.0+2
+  flutter_webview_plugin: 0.3.0+2
 #  flutter_webview_plugin: ^0.2.1+2
   crypto: ^2.0.6
   dio: ^1.0.6

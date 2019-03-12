@@ -45,8 +45,8 @@ class _HomePageState extends State<HomePage>
   List<Widget> tabs = [];
   List tabData = [
     {'text': '首页', 'icon': 'a1.png'},
-    {'text': '编辑', 'icon': 'a2.png'},
-    {'text': '用户', 'icon': 'a3.png'}
+    {'text': '画板', 'icon': 'a2.png'},
+    {'text': '天气', 'icon': 'a3.png'}
   ];
   TabController controller;
   var appBarTitle;
